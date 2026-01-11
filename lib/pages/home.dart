@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/pages/step2.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -92,6 +93,8 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
             ),
+            _buildContinueButton(),
+            SizedBox(height: 30),
           ],
         ),
       ),
@@ -198,6 +201,43 @@ class _HomePageState extends State<HomePage> {
               category['desc'],
               style: TextStyle(fontSize: 12, color: Colors.grey),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildContinueButton() {
+    return SizedBox(
+      width: double.infinity,
+      height: 60,
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const StepTwoPage()),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Color(0xFFFF8A65),
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Countinue",
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(width: 10),
+            Icon(Icons.arrow_forward, color: Colors.white),
           ],
         ),
       ),
