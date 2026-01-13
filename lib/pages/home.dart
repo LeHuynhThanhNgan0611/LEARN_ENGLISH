@@ -51,8 +51,11 @@ class _HomePageState extends State<HomePage> {
         title: _buildStepIndicator(),
         actions: [
           Padding(
-            padding: EdgeInsets.only(right: 16),
-            child: Icon(Icons.bolt, color: Colors.amber.shade600),
+            padding: const EdgeInsets.only(right: 16),
+            child: CircleAvatar(
+              backgroundColor: Colors.orange.withOpacity(0.1),
+              child: const Icon(Icons.bolt, color: Colors.amber),
+            ),
           ),
         ],
       ),
@@ -111,6 +114,15 @@ class _HomePageState extends State<HomePage> {
           decoration: BoxDecoration(
             color: const Color(0xFFFF8A65),
             borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        SizedBox(width: 4),
+        Container(
+          width: 6,
+          height: 6,
+          decoration: BoxDecoration(
+            color: const Color(0xFFFFDCCF),
+            shape: BoxShape.circle,
           ),
         ),
         SizedBox(width: 4),
