@@ -67,7 +67,9 @@ class _StepTwoPageState extends State<StepTwoPage> {
       ),
       body: Padding(
         padding: EdgeInsetsGeometry.symmetric(horizontal: 24.0),
-        child: Column(children: [SizedBox(height: 10)]),
+        child: Column(
+          children: [SizedBox(height: 10), _buildIllustrationCard()],
+        ),
       ),
     );
   }
@@ -112,6 +114,87 @@ class _StepTwoPageState extends State<StepTwoPage> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildIllustrationCard() {
+    return Container(
+      width: double.infinity,
+      height: 180,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(32),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.03),
+            blurRadius: 20,
+            offset: Offset(0, 10),
+          ),
+        ],
+      ),
+      child: Stack(
+        children: [
+          Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  radius: 45,
+                  backgroundColor: Color(0xFF4FC3F7),
+                  child: Icon(Icons.translate, size: 45, color: Colors.white),
+                ),
+                SizedBox(width: 20),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: List.generate(
+                    3,
+                    (index) => Container(
+                      margin: EdgeInsets.only(bottom: 8),
+                      width: index == 1 ? 100 : 70,
+                      height: 8,
+                      decoration: BoxDecoration(
+                        color: index == 0
+                            ? Colors.red.shade100
+                            : index == 1
+                            ? Colors.blue.shade50
+                            : Colors.yellow.shade100,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: 16,
+            right: 16,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 10)],
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.trending_up, size: 14, color: Color(0xFFFF8A65)),
+                  SizedBox(width: 14),
+                  Text(
+                    "Level Up",
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Color(0xFFFF8A65),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
