@@ -13,32 +13,32 @@ class _StepThreePageState extends State<StepThreePage> {
 
   final List<Map<String, dynamic>> levels = [
     {
-      "title": "Beginner",
-      "subtitle": "I'm new to English",
-      "icon": Icons.local_florist, // Icon mầm cây
-      "color": Color(0xFFE0F7FA),
-      "iconColor": Color(0xFF4DD0E1),
+      "title": "Casual",
+      "subtitle": "5 mins / day",
+      "icon": Icons.local_cafe_outlined,
+      "color": Color(0xFFE1F5FE),
+      "iconColor": Color(0xFF03A9F4),
     },
     {
-      "title": "Elementary",
-      "subtitle": "I know basic phrases",
-      "icon": Icons.chat_bubble,
+      "title": "Regular",
+      "subtitle": "10 mins / day",
+      "icon": Icons.show_chart,
       "color": Color(0xFFFFF3E0),
-      "iconColor": Color(0xFFFF8A65),
+      "iconColor": Color(0xFFFF7043),
     },
     {
-      "title": "Intermediate",
-      "subtitle": "I can have simple conversations",
-      "icon": Icons.forum,
+      "title": "Serious",
+      "subtitle": "20 mins / day",
+      "icon": Icons.psychology_outlined,
       "color": Color(0xFFFFFDE7),
       "iconColor": Color(0xFFFFB300),
     },
     {
-      "title": "Advanced",
-      "subtitle": "I want to perfect my fluency",
-      "icon": Icons.auto_awesome, // Icon lấp lánh
-      "color": Color(0xFFF3E5F5),
-      "iconColor": Color(0xFF9575CD),
+      "title": "Intense",
+      "subtitle": "30 mins / day",
+      "icon": Icons.local_fire_department_outlined,
+      "color": Color(0xFFFFEBEE),
+      "iconColor": Color(0xFFEF5350),
     },
   ];
 
@@ -73,7 +73,7 @@ class _StepThreePageState extends State<StepThreePage> {
             _buildIllustrationCard(),
             SizedBox(height: 32),
             Text(
-              "What is your current\nlevel?",
+              "Set your daily goal",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 28,
@@ -83,7 +83,7 @@ class _StepThreePageState extends State<StepThreePage> {
             ),
             SizedBox(height: 12),
             Text(
-              "We'll tailor the curriculum to match your\nEnglish proficiency.",
+              "How many minutes do you want to practice\nEnglish each day?",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16,
@@ -293,7 +293,7 @@ class _StepThreePageState extends State<StepThreePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Countinue",
+              "Finish",
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.white,
@@ -301,7 +301,7 @@ class _StepThreePageState extends State<StepThreePage> {
               ),
             ),
             SizedBox(width: 10),
-            Icon(Icons.arrow_forward, color: Colors.white),
+            Icon(Icons.check_circle, color: Colors.white),
           ],
         ),
       ),
