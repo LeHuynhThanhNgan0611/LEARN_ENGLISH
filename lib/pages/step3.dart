@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/pages/step3.dart';
 
-class StepTwoPage extends StatefulWidget {
-  const StepTwoPage({super.key});
+class StepThreePage extends StatefulWidget {
+  const StepThreePage({super.key});
 
   @override
-  State<StepTwoPage> createState() => _StepTwoPageState();
+  State<StepThreePage> createState() => _StepThreePageState();
 }
 
-class _StepTwoPageState extends State<StepTwoPage> {
+class _StepThreePageState extends State<StepThreePage> {
   // Lưu trữ cấp độ được chọn (mặc định là Elementary)
   String selectedLevel = "Elementary";
 
@@ -127,15 +126,6 @@ class _StepTwoPageState extends State<StepTwoPage> {
         ),
         SizedBox(width: 4),
         Container(
-          width: 30,
-          height: 6,
-          decoration: BoxDecoration(
-            color: Color(0xFFFF8A65),
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-        SizedBox(width: 4),
-        Container(
           width: 8,
           height: 6,
           decoration: BoxDecoration(
@@ -143,9 +133,18 @@ class _StepTwoPageState extends State<StepTwoPage> {
             shape: BoxShape.circle,
           ),
         ),
+        SizedBox(width: 4),
+        Container(
+          width: 30,
+          height: 6,
+          decoration: BoxDecoration(
+            color: Color(0xFFFF8A65),
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
         SizedBox(width: 8),
         const Text(
-          "STEP 2/3",
+          "STEP 3/3",
           style: TextStyle(
             color: Color(0xFFFF8A65),
             fontSize: 12,
@@ -317,10 +316,10 @@ class _StepTwoPageState extends State<StepTwoPage> {
       height: 60,
       child: ElevatedButton(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const StepThreePage()),
-          );
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => const StepTwoPage()),
+          // );
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Color(0xFFFF8A65),
