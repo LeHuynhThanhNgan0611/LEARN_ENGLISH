@@ -60,7 +60,7 @@ class _StepThreePageState extends State<StepThreePage> {
             padding: const EdgeInsets.only(right: 16),
             child: CircleAvatar(
               backgroundColor: Colors.orange.withOpacity(0.1),
-              child: const Icon(Icons.bolt, color: Colors.amber),
+              child: const Icon(Icons.celebration, color: Colors.amber),
             ),
           ),
         ],
@@ -170,65 +170,26 @@ class _StepThreePageState extends State<StepThreePage> {
           ),
         ],
       ),
-      child: Stack(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircleAvatar(
-                  radius: 45,
-                  backgroundColor: Color(0xFF4FC3F7),
-                  child: Icon(Icons.translate, size: 45, color: Colors.white),
-                ),
-                SizedBox(width: 20),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: List.generate(
-                    3,
-                    (index) => Container(
-                      margin: EdgeInsets.only(bottom: 8),
-                      width: index == 1 ? 100 : 70,
-                      height: 8,
-                      decoration: BoxDecoration(
-                        color: index == 0
-                            ? Colors.red.shade100
-                            : index == 1
-                            ? Colors.blue.shade50
-                            : Colors.yellow.shade100,
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+          CircleAvatar(
+            radius: 40,
+            backgroundColor: Color(0xFFFFEBEE),
+            child: Icon(
+              Icons.access_time_filled,
+              size: 40,
+              color: Color(0xFFFF8A65),
             ),
           ),
-          Positioned(
-            bottom: 16,
-            right: 16,
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 10)],
-              ),
-              child: Row(
-                children: [
-                  Icon(Icons.trending_up, size: 14, color: Color(0xFFFF8A65)),
-                  SizedBox(width: 14),
-                  Text(
-                    "Level Up",
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Color(0xFFFF8A65),
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
+          SizedBox(height: 12),
+          Text(
+            "SET YOR PACE",
+            style: TextStyle(
+              color: Color(0xFFFF8A65),
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.2,
+              fontSize: 14,
             ),
           ),
         ],
