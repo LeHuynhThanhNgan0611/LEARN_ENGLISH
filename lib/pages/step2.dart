@@ -68,7 +68,43 @@ class _StepTwoPageState extends State<StepTwoPage> {
       body: Padding(
         padding: EdgeInsetsGeometry.symmetric(horizontal: 24.0),
         child: Column(
-          children: [SizedBox(height: 10), _buildIllustrationCard()],
+          children: [
+            SizedBox(height: 10),
+            _buildIllustrationCard(),
+            SizedBox(height: 32),
+            Text(
+              "What is your current\nlevel?",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                height: 1.2,
+              ),
+            ),
+            SizedBox(height: 12),
+            Text(
+              "We'll tailor the curriculum to match your\nEnglish proficiency.",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black54,
+                height: 1.4,
+              ),
+            ),
+            SizedBox(height: 24),
+            Expanded(
+              child: ListView.separated(
+                itemCount: levels.length,
+                separatorBuilder: (context, index) =>
+                    const SizedBox(height: 16),
+                itemBuilder: (context, index) {
+                  final level = levels[index];
+                  bool isSelected = selectedLevel == level['title'];
+                  return _buildLevelItem(level, isSelected);
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -194,6 +230,80 @@ class _StepTwoPageState extends State<StepTwoPage> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildLevelItem(Map<String, dynamic> level, bool isSelected) {
+    return GestureDetector(
+      onTap: () => setState(() => selectedLevel = level['title']),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(
+            color: isSelected ? const Color(0xFFFF8A65) : Colors.transparent,
+            width: 2,
+          ),
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: level['color'],
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Icon(level['icon'], color: level['iconColor']),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    level['title'],
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    level['subtitle'],
+                    style: const TextStyle(color: Colors.black38, fontSize: 13),
+                  ),
+                ],
+              ),
+            ),
+            // Radio button giả lập
+            Container(
+              width: 24,
+              height: 24,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: isSelected ? const Color(0xFFFF8A65) : Colors.black12,
+                  width: 2,
+                ),
+              ),
+              child: isSelected
+                  ? Center(
+                      child: Container(
+                        width: 12,
+                        height: 12,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color(0xFFFF8A65),
+                        ),
+                      ),
+                    )
+                  : null,
+            ),
+          ],
+        ),
       ),
     );
   }
