@@ -17,6 +17,8 @@ class DashboardPage extends StatelessWidget {
               _buildHeader(),
               SizedBox(height: 30),
               _buildDailyGoalCard(),
+              SizedBox(height: 24),
+              _buildStatRow(),
             ],
           ),
         ),
@@ -149,6 +151,65 @@ class DashboardPage extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStatRow() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          _buildStatItem(
+            Icons.start,
+            "1,240 XP",
+            Colors.orange.shade50,
+            Colors.orange,
+          ),
+          SizedBox(width: 12),
+          _buildStatItem(
+            Icons.emoji_events,
+            "Silver League",
+            Colors.teal.shade50,
+            Colors.teal,
+          ),
+          SizedBox(width: 12),
+          _buildStatItem(
+            Icons.timer,
+            "24 min left",
+            Colors.red.shade50,
+            Colors.red,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStatItem(
+    IconData icon,
+    String label,
+    Color bgColor,
+    Color iconColor,
+  ) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      decoration: BoxDecoration(
+        color: bgColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        children: [
+          Icon(icon, color: iconColor, size: 18),
+          SizedBox(width: 8),
+          Text(
+            label,
+            style: TextStyle(
+              color: iconColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 13,
+            ),
           ),
         ],
       ),
