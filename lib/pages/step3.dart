@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/pages/dashboard.dart';
 
 class StepThreePage extends StatefulWidget {
   const StepThreePage({super.key});
@@ -277,10 +278,11 @@ class _StepThreePageState extends State<StepThreePage> {
       height: 60,
       child: ElevatedButton(
         onPressed: () {
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => const StepTwoPage()),
-          // );
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const DashboardPage()),
+            (route) => false,
+          );
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Color(0xFFFF8A65),
