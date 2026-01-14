@@ -19,6 +19,9 @@ class DashboardPage extends StatelessWidget {
               _buildDailyGoalCard(),
               SizedBox(height: 24),
               _buildStatRow(),
+              SizedBox(height: 32),
+              _buildSectionHeader("Your Lessons"),
+              SizedBox(height: 16),
             ],
           ),
         ),
@@ -124,7 +127,7 @@ class DashboardPage extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(width: 4), // Khoảng cách giữa chữ và icon
+                      SizedBox(width: 4),
                       Icon(Icons.play_arrow, color: Colors.white, size: 18),
                     ],
                   ),
@@ -213,6 +216,25 @@ class DashboardPage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildSectionHeader(String title) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        const Text(
+          "See All",
+          style: TextStyle(
+            color: Color(0xFFFF8A65),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
     );
   }
 }
