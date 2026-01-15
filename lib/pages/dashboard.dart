@@ -1,55 +1,79 @@
 import 'package:flutter/material.dart';
 
-class DashboardPage extends StatelessWidget {
+class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
 
   @override
+  State<DashboardPage> createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends State<DashboardPage> {
+  int _selectedIndex = 0;
+  // Hàm xử lý khi nhấn vào BottomNav
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   Widget build(BuildContext context) {
+    final List<Widget> _pages = [
+      _buildHomeView(), // Trang chủ (nội dung bạn đang viết)
+      const Center(
+        child: Text("Vocabulary Page", style: TextStyle(fontSize: 24)),
+      ), // Trang từ vựng
+      const Center(child: Text("Ranking Page", style: TextStyle(fontSize: 24))),
+      const Center(child: Text("Profile Page", style: TextStyle(fontSize: 24))),
+    ];
     return Scaffold(
       backgroundColor: Color(0xFFFEF9F6),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 20),
-              _buildHeader(),
-              SizedBox(height: 30),
-              _buildDailyGoalCard(),
-              SizedBox(height: 24),
-              _buildStatRow(),
-              SizedBox(height: 32),
-              _buildSectionHeader("Your Lessons"),
-              SizedBox(height: 16),
-              _buildLessonItem(
-                title: "Basics 1",
-                subtitle: "Master the essentials of English",
-                progress: 0.8,
-                color: Colors.orangeAccent,
-                icon: Icons.menu_book,
-              ),
-              _buildLessonItem(
-                title: "Food & Drink",
-                subtitle: "Order like a local anywhere",
-                progress: 0.3,
-                color: Colors.tealAccent.shade700,
-                icon: Icons.restaurant,
-              ),
-              _buildLessonItem(
-                title: "Travel Essentials",
-                subtitle: "Navigate the world with ease",
-                progress: 0.0,
-                color: Colors.grey,
-                icon: Icons.explore,
-                isLocked: true,
-              ),
-              SizedBox(height: 20),
-            ],
-          ),
+      body: IndexedStack(index: _selectedIndex, children: _pages),
+      bottomNavigationBar: _buildBottomNav(),
+    );
+  }
+
+  Widget _buildHomeView() {
+    return SafeArea(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 20),
+            _buildHeader(),
+            const SizedBox(height: 30),
+            _buildDailyGoalCard(),
+            const SizedBox(height: 24),
+            _buildStatRow(),
+            const SizedBox(height: 32),
+            _buildSectionHeader("Your Lessons"),
+            const SizedBox(height: 16),
+            _buildLessonItem(
+              title: "Basics 1",
+              subtitle: "Master the essentials of English",
+              progress: 0.8,
+              color: Colors.orangeAccent,
+              icon: Icons.menu_book,
+            ),
+            _buildLessonItem(
+              title: "Food & Drink",
+              subtitle: "Order like a local anywhere",
+              progress: 0.3,
+              color: Colors.tealAccent.shade700,
+              icon: Icons.restaurant,
+            ),
+            _buildLessonItem(
+              title: "Travel Essentials",
+              subtitle: "Navigate the world with ease",
+              progress: 0.0,
+              color: Colors.grey,
+              icon: Icons.explore,
+              isLocked: true,
+            ),
+            const SizedBox(height: 20),
+          ],
         ),
       ),
-      bottomNavigationBar: _buildBottomNav(),
     );
   }
 
@@ -334,7 +358,8 @@ class DashboardPage extends StatelessWidget {
       selectedItemColor: Color(0xFFFF8A65),
       unselectedItemColor: Colors.black26,
       showUnselectedLabels: true,
-      currentIndex: 0,
+      currentIndex: _selectedIndex,
+      onTap: _onItemTapped,
       items: [
         BottomNavigationBarItem(
           icon: Icon(Icons.grid_view_rounded),
