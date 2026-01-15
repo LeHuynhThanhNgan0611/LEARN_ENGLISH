@@ -49,6 +49,7 @@ class DashboardPage extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: _buildBottomNav(),
     );
   }
 
@@ -324,6 +325,28 @@ class DashboardPage extends StatelessWidget {
             ),
         ],
       ),
+    );
+  }
+
+  Widget _buildBottomNav() {
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: Color(0xFFFF8A65),
+      unselectedItemColor: Colors.black26,
+      showUnselectedLabels: true,
+      currentIndex: 0,
+      items: [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.grid_view_rounded),
+          label: "Dashboard",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.menu_book),
+          label: "Vocabulary",
+        ),
+        BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: "Ranking"),
+        BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+      ],
     );
   }
 }
