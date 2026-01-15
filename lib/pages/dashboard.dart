@@ -22,6 +22,29 @@ class DashboardPage extends StatelessWidget {
               SizedBox(height: 32),
               _buildSectionHeader("Your Lessons"),
               SizedBox(height: 16),
+              _buildLessonItem(
+                title: "Basics 1",
+                subtitle: "Master the essentials of English",
+                progress: 0.8,
+                color: Colors.orangeAccent,
+                icon: Icons.menu_book,
+              ),
+              _buildLessonItem(
+                title: "Food & Drink",
+                subtitle: "Order like a local anywhere",
+                progress: 0.3,
+                color: Colors.tealAccent.shade700,
+                icon: Icons.restaurant,
+              ),
+              _buildLessonItem(
+                title: "Travel Essentials",
+                subtitle: "Navigate the world with ease",
+                progress: 0.0,
+                color: Colors.grey,
+                icon: Icons.explore,
+                isLocked: true,
+              ),
+              SizedBox(height: 20),
             ],
           ),
         ),
@@ -235,6 +258,72 @@ class DashboardPage extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildLessonItem({
+    required String title,
+    required String subtitle,
+    required double progress,
+    required Color color,
+    required IconData icon,
+    bool isLocked = false,
+  }) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 16),
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: isLocked ? Colors.transparent : Colors.white,
+        borderRadius: BorderRadius.circular(24),
+        border: isLocked
+            ? Border.all(color: Colors.black12, style: BorderStyle.none)
+            : null,
+      ),
+      child: Row(
+        children: [
+          Container(
+            padding: EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: color.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Icon(icon, color: color),
+          ),
+          SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+                Text(
+                  subtitle,
+                  style: TextStyle(color: Colors.black38, fontSize: 12),
+                ),
+                if (!isLocked) ...[
+                  SizedBox(height: 12),
+                  LinearProgressIndicator(
+                    value: progress,
+                    backgroundColor: Colors.black12,
+                    color: color,
+                    minHeight: 4,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ],
+              ],
+            ),
+          ),
+          if (isLocked)
+            Icon(Icons.lock, color: Colors.black26)
+          else
+            Text(
+              "${(progress * 100).toInt()}%",
+              style: TextStyle(color: color, fontWeight: FontWeight.bold),
+            ),
+        ],
+      ),
     );
   }
 }
