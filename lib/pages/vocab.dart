@@ -46,6 +46,11 @@ class _VocabularyPageState extends State<VocabularyPage> {
                     child: _buildTabSwitcher(),
                   ),
                   SizedBox(height: 24),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 24),
+                    child: _buildFilterChips(),
+                  ),
+                  SizedBox(height: 20),
                 ],
               ),
             ),
@@ -116,6 +121,63 @@ class _VocabularyPageState extends State<VocabularyPage> {
                   color: Colors.black45,
                 ),
               ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFilterChips() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal, // Cho phép cuộn ngang
+      clipBehavior: Clip.none, // Để không bị cắt bóng đổ (nếu có)
+      child: Row(
+        children: [
+          _buildChip(
+            Icons.star_rounded,
+            "To Review (12)",
+            const Color(0xFFFFEBE5),
+            const Color(0xFFFF8A65),
+            const Color.fromARGB(255, 250, 142, 109),
+          ),
+          const SizedBox(width: 12),
+          _buildChip(
+            Icons.check_circle,
+            "Mastered (148)",
+            const Color(0xFFE3F2FD),
+            const Color(0xFF4FC3F7),
+            const Color.fromARGB(255, 86, 201, 255),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildChip(
+    IconData icon,
+    String label,
+    Color bgColor,
+    Color textColor,
+    Color borderColor,
+  ) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: bgColor,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: borderColor, width: 1),
+      ),
+      child: Row(
+        children: [
+          Icon(icon, size: 18, color: textColor),
+          SizedBox(width: 6),
+          Text(
+            label,
+            style: TextStyle(
+              color: textColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 13,
             ),
           ),
         ],
