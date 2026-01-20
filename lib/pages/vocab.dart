@@ -36,6 +36,7 @@ class _VocabularyPageState extends State<VocabularyPage> {
                           ),
                         ),
                         SizedBox(height: 20),
+                        _buildSearchBar(),
                       ],
                     ),
                   ),
@@ -43,6 +44,25 @@ class _VocabularyPageState extends State<VocabularyPage> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSearchBar() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(25),
+        border: Border.all(color: Colors.black.withOpacity(0.05)),
+      ),
+      child: TextField(
+        decoration: InputDecoration(
+          icon: Icon(Icons.search, color: Colors.black26),
+          hintText: "Search words...",
+          hintStyle: TextStyle(color: Colors.black26),
+          border: InputBorder.none,
         ),
       ),
     );
