@@ -18,7 +18,7 @@ class _VocabularyPageState extends State<VocabularyPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(24, 20, 24, 0),
+              padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -40,6 +40,12 @@ class _VocabularyPageState extends State<VocabularyPage> {
                       ],
                     ),
                   ),
+                  SizedBox(height: 24),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 24),
+                    child: _buildTabSwitcher(),
+                  ),
+                  SizedBox(height: 24),
                 ],
               ),
             ),
@@ -64,6 +70,55 @@ class _VocabularyPageState extends State<VocabularyPage> {
           hintStyle: TextStyle(color: Colors.black26),
           border: InputBorder.none,
         ),
+      ),
+    );
+  }
+
+  Widget _buildTabSwitcher() {
+    return Container(
+      height: 50,
+      decoration: BoxDecoration(
+        color: Color(0xFFF0EFEA),
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              margin: EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 4,
+                  ),
+                ],
+              ),
+              child: Center(
+                child: Text(
+                  "Flashcards",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFFFF8A65),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Center(
+              child: Text(
+                "Word Bank",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black45,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
