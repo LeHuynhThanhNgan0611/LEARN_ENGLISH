@@ -8,67 +8,122 @@ class VocabularyPage extends StatefulWidget {
 }
 
 class _VocabularyPageState extends State<VocabularyPage> {
-  int _selectedIndex = 1;
+  // Biến lưu trữ vị trí tab đang được chọn
+  int _selectedIndex = 1; // Mặc định chọn tab VOCAB (vị trí số 1)
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFEF9F6),
+      backgroundColor: const Color(0xFFFAF9F6),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+              padding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(24, 20, 24, 0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Vocabulary",
-                          style: TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF1A1A1A),
-                          ),
-                        ),
-                        SizedBox(height: 20),
-                        _buildSearchBar(),
-                      ],
+                  const Text(
+                    "Vocabulary",
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF1A1A1A),
                     ),
                   ),
-                  SizedBox(height: 24),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24),
-                    child: _buildTabSwitcher(),
+                  const SizedBox(height: 20),
+                  _buildSearchBar(),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 24),
+
+            // Tab Switcher (Flashcards / Word Bank)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: _buildTabSwitcher(),
+            ),
+
+            const SizedBox(height: 24),
+
+            // Filter Chips
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: _buildFilterChips(),
+            ),
+
+            const SizedBox(height: 20),
+
+            // Danh sách từ vựng
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                children: [
+                  _buildWordCard(
+                    word: "Serendipity",
+                    phonetic: "/ˌserənˈdipədē/",
+                    definition:
+                        "The occurrence of events by chance in a happy way.",
+                    status: "REVIEW",
+                    footerText: "Next review tomorrow",
+                    footerLabel: "Last seen: 2 days ago",
+                    isStarred: true,
                   ),
-                  SizedBox(height: 24),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24),
-                    child: _buildFilterChips(),
+                  _buildWordCard(
+                    word: "Ephemeral",
+                    phonetic: "/əˈfem(ə)rəl/",
+                    definition: "Lasting for a very short time.",
+                    status: "MASTERED",
+                    footerText: "Keep it up!",
+                    footerLabel: "Accuracy: 98%",
+                    isMastered: true,
                   ),
-                  SizedBox(height: 20),
+                  _buildWordCard(
+                    word: "Ambiguous",
+                    phonetic: "/amˈbiɡyo͞oəs/",
+                    definition: "Open to more than one interpretation.",
+                    status: "REVIEW",
+                    footerText: "Critical",
+                    footerLabel: "Last seen: Just now",
+                    isStarred: true,
+                    isCritical: true,
+                  ),
+                  const SizedBox(height: 80),
                 ],
               ),
             ),
           ],
         ),
       ),
+      // Nút Floating Action Button (FAB)
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: const Color(0xFFFF8A65),
+        elevation: 4,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        child: const Icon(Icons.style, color: Colors.white, size: 28),
+      ),
     );
   }
+  // --- Các Widget phụ trợ khác ---
 
   Widget _buildSearchBar() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(25),
-        border: Border.all(color: Colors.black.withOpacity(0.05)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.03),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
-      child: TextField(
+      child: const TextField(
         decoration: InputDecoration(
           icon: Icon(Icons.search, color: Colors.black26),
           hintText: "Search words...",
@@ -83,14 +138,14 @@ class _VocabularyPageState extends State<VocabularyPage> {
     return Container(
       height: 50,
       decoration: BoxDecoration(
-        color: Color(0xFFF0EFEA),
+        color: const Color(0xFFF0EFEA),
         borderRadius: BorderRadius.circular(15),
       ),
       child: Row(
         children: [
           Expanded(
             child: Container(
-              margin: EdgeInsets.all(4),
+              margin: const EdgeInsets.all(4),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
@@ -101,7 +156,7 @@ class _VocabularyPageState extends State<VocabularyPage> {
                   ),
                 ],
               ),
-              child: Center(
+              child: const Center(
                 child: Text(
                   "Flashcards",
                   style: TextStyle(
@@ -112,7 +167,7 @@ class _VocabularyPageState extends State<VocabularyPage> {
               ),
             ),
           ),
-          Expanded(
+          const Expanded(
             child: Center(
               child: Text(
                 "Word Bank",
@@ -129,28 +184,22 @@ class _VocabularyPageState extends State<VocabularyPage> {
   }
 
   Widget _buildFilterChips() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal, // Cho phép cuộn ngang
-      clipBehavior: Clip.none, // Để không bị cắt bóng đổ (nếu có)
-      child: Row(
-        children: [
-          _buildChip(
-            Icons.star_rounded,
-            "To Review (12)",
-            const Color(0xFFFFEBE5),
-            const Color(0xFFFF8A65),
-            const Color.fromARGB(255, 250, 142, 109),
-          ),
-          const SizedBox(width: 12),
-          _buildChip(
-            Icons.check_circle,
-            "Mastered (148)",
-            const Color(0xFFE3F2FD),
-            const Color(0xFF4FC3F7),
-            const Color.fromARGB(255, 86, 201, 255),
-          ),
-        ],
-      ),
+    return Row(
+      children: [
+        _buildChip(
+          Icons.star_rounded,
+          "To Review (12)",
+          const Color(0xFFFFEBE5),
+          const Color(0xFFFF8A65),
+        ),
+        const SizedBox(width: 12),
+        _buildChip(
+          Icons.check_circle,
+          "Mastered (148)",
+          const Color(0xFFE3F2FD),
+          const Color(0xFF4FC3F7),
+        ),
+      ],
     );
   }
 
@@ -159,19 +208,17 @@ class _VocabularyPageState extends State<VocabularyPage> {
     String label,
     Color bgColor,
     Color textColor,
-    Color borderColor,
   ) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
         color: bgColor,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: borderColor, width: 1),
       ),
       child: Row(
         children: [
           Icon(icon, size: 18, color: textColor),
-          SizedBox(width: 6),
+          const SizedBox(width: 6),
           Text(
             label,
             style: TextStyle(
@@ -179,6 +226,110 @@ class _VocabularyPageState extends State<VocabularyPage> {
               fontWeight: FontWeight.bold,
               fontSize: 13,
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildWordCard({
+    required String word,
+    required String phonetic,
+    required String definition,
+    required String status,
+    required String footerText,
+    required String footerLabel,
+    bool isStarred = false,
+    bool isMastered = false,
+    bool isCritical = false,
+  }) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 16),
+      padding: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: Colors.black.withOpacity(0.05)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    word,
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(width: 8),
+                  Icon(
+                    Icons.volume_down_rounded,
+                    color: Color(0xFFBBDEFB),
+                    size: 24,
+                  ),
+                ],
+              ),
+              Icon(
+                isMastered ? Icons.check_circle : Icons.stars_rounded,
+                color: isMastered ? Color(0xFF4DB6AC) : Color(0xFFFFAB91),
+              ),
+            ],
+          ),
+          Text(
+            phonetic,
+            style: const TextStyle(color: Color(0xFF64B5F6), fontSize: 14),
+          ),
+          SizedBox(height: 12),
+          Text(
+            definition,
+            style: TextStyle(
+              color: Colors.grey.shade700,
+              fontSize: 16,
+              height: 1.4,
+            ),
+          ),
+          SizedBox(height: 12),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                color: isMastered
+                    ? const Color(0xFFE0F2F1)
+                    : const Color(0xFFFFF3E0),
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Text(
+                status,
+                style: TextStyle(
+                  color: isMastered
+                      ? const Color(0xFF00897B)
+                      : const Color(0xFFF4511E),
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          Divider(height: 24),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                footerLabel,
+                style: TextStyle(color: Colors.grey.shade400, fontSize: 12),
+              ),
+              Text(
+                footerText,
+                style: TextStyle(
+                  color: isCritical ? Colors.red : const Color(0xFFFF8A65),
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
           ),
         ],
       ),
