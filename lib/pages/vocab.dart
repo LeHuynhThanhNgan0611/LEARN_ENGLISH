@@ -28,9 +28,9 @@ class _VocabularyPageState extends State<VocabularyPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Vocabulary",
-                    style: TextStyle(
+                  Text(
+                    _isFlashcards ? "Flashcards" : "Word Bank",
+                    style: const TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF1A1A1A),

@@ -53,20 +53,20 @@ class WordBankView extends StatelessWidget {
 
   Widget _buildSectionHeader(String title) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
+      padding: EdgeInsets.only(bottom: 16),
       child: Row(
         children: [
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.black26,
               fontWeight: FontWeight.bold,
               fontSize: 12,
               letterSpacing: 1.1,
             ),
           ),
-          const SizedBox(width: 12),
-          const Expanded(child: Divider(color: Colors.black12, thickness: 1)),
+          SizedBox(width: 12),
+          Expanded(child: Divider(color: Colors.black12, thickness: 1)),
         ],
       ),
     );
@@ -79,8 +79,8 @@ class WordBankView extends StatelessWidget {
     bool isStarred = false,
   }) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(16),
+      margin: EdgeInsets.only(bottom: 12),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
@@ -96,24 +96,21 @@ class WordBankView extends StatelessWidget {
                   children: [
                     Text(
                       word,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8),
                     Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 6,
-                        vertical: 2,
-                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFE3F2FD),
+                        color: Color(0xFFE3F2FD),
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Text(
                         type,
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: Color(0xFF42A5F5),
                           fontSize: 10,
                           fontWeight: FontWeight.bold,
@@ -122,10 +119,10 @@ class WordBankView extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: 4),
                 Text(
                   definition,
-                  style: const TextStyle(color: Colors.black45, fontSize: 14),
+                  style: TextStyle(color: Colors.black45, fontSize: 14),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
