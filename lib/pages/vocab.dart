@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class VocabularyPage extends StatefulWidget {
@@ -10,6 +11,7 @@ class VocabularyPage extends StatefulWidget {
 class _VocabularyPageState extends State<VocabularyPage> {
   // Biến lưu trữ vị trí tab đang được chọn
   int _selectedIndex = 1; // Mặc định chọn tab VOCAB (vị trí số 1)
+  bool _isFlashcards = false;
 
   @override
   Widget build(BuildContext context) {
@@ -135,50 +137,35 @@ class _VocabularyPageState extends State<VocabularyPage> {
   }
 
   Widget _buildTabSwitcher() {
-    return Container(
-      height: 50,
-      decoration: BoxDecoration(
-        color: const Color(0xFFF0EFEA),
-        borderRadius: BorderRadius.circular(15),
+    return SizedBox(
+      width: double.infinity,
+      child: CupertinoSlidingSegmentedControl<bool>(
+        backgroundColor: Color(0xFFF0EFEA),
+        thumbColor: Colors.white,
+        groupValue: _isFlashcards,
+        padding: EdgeInsets.all(4),
+        children: {
+          true: _buildTabText("Flashcards", _isFlashcards),
+          false: _buildTabText("Word Bank", !_isFlashcards),
+        },
+        onValueChanged: (value) {
+          if (value != null) {
+            setState(() => _isFlashcards = value);
+          }
+        },
       ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Container(
-              margin: const EdgeInsets.all(4),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
-                    blurRadius: 4,
-                  ),
-                ],
-              ),
-              child: const Center(
-                child: Text(
-                  "Flashcards",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFFFF8A65),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          const Expanded(
-            child: Center(
-              child: Text(
-                "Word Bank",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black45,
-                ),
-              ),
-            ),
-          ),
-        ],
+    );
+  }
+
+  Widget _buildTabText(String text, bool isActive) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12),
+      child: Text(
+        text,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: isActive ? const Color(0xFFFF8A65) : Colors.black45,
+        ),
       ),
     );
   }
