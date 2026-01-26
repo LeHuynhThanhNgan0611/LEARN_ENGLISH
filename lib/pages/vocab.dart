@@ -66,7 +66,11 @@ class _VocabularyPageState extends State<VocabularyPage> {
         backgroundColor: const Color(0xFFFF8A65),
         elevation: 4,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-        child: const Icon(Icons.style, color: Colors.white, size: 28),
+        child: Icon(
+          _isFlashcards ? Icons.style : Icons.add,
+          color: Colors.white,
+          size: 28,
+        ),
       ),
     );
   }
