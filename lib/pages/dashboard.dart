@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/pages/raking.dart';
 import 'package:weather_app/pages/vocab.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -21,7 +22,7 @@ class _DashboardPageState extends State<DashboardPage> {
     final List<Widget> _pages = [
       _buildHomeView(), // Trang chủ (nội dung bạn đang viết)
       const VocabularyPage(), // Trang từ vựng
-      const Center(child: Text("Ranking Page", style: TextStyle(fontSize: 24))),
+      const RankPage(), // Trang xếp hạng
       const Center(child: Text("Profile Page", style: TextStyle(fontSize: 24))),
     ];
     return Scaffold(
