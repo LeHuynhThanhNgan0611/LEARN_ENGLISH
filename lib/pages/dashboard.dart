@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/pages/profile.dart';
 import 'package:weather_app/pages/raking.dart';
 import 'package:weather_app/pages/vocab.dart';
 
@@ -23,7 +24,7 @@ class _DashboardPageState extends State<DashboardPage> {
       _buildHomeView(), // Trang chủ (nội dung bạn đang viết)
       const VocabularyPage(), // Trang từ vựng
       const RankPage(), // Trang xếp hạng
-      const Center(child: Text("Profile Page", style: TextStyle(fontSize: 24))),
+      const ProfileView(), // Trang hồ sơ
     ];
     return Scaffold(
       backgroundColor: Color(0xFFFEF9F6),
