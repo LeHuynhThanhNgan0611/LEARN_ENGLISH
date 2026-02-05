@@ -9,7 +9,14 @@ class ProfileView extends StatelessWidget {
       backgroundColor: const Color(0xFFFAF9F6),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 24),
-        child: Column(children: [SizedBox(height: 60), _buildAvatarSection()]),
+        child: Column(
+          children: [
+            SizedBox(height: 60),
+            _buildAvatarSection(),
+            SizedBox(height: 32),
+            _buildStatisticsSection(),
+          ],
+        ),
       ),
     );
   }
@@ -62,6 +69,19 @@ class ProfileView extends StatelessWidget {
             ),
           ],
         ),
+      ],
+    );
+  }
+
+  Widget _buildStatisticsSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Statistics",
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        SizedBox(height: 16),
       ],
     );
   }
