@@ -57,7 +57,7 @@ class RankPage extends StatelessWidget {
                   _buildRankItem(8, "Sophia Kim", "", "1,720"),
 
                   const SizedBox(height: 20),
-                  // _buildPromotionBanner(),
+                  _buildPromotionBanner(),
                   const SizedBox(height: 80),
                 ],
               ),
@@ -203,6 +203,30 @@ class RankPage extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPromotionBanner() {
+    return Container(
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Color(0xFFE0F2F1),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.trending_up, color: Color(0xFF00897B)),
+          SizedBox(width: 8),
+          Text(
+            "Top 10 are promoted to Gold League",
+            style: TextStyle(
+              color: Color(0xFF00897B),
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       ),
