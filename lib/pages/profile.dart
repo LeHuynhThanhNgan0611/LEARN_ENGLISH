@@ -15,6 +15,8 @@ class ProfileView extends StatelessWidget {
             _buildAvatarSection(),
             SizedBox(height: 32),
             _buildStatisticsSection(),
+            SizedBox(height: 32),
+            _buildAchievementsSection(),
           ],
         ),
       ),
@@ -162,6 +164,30 @@ class ProfileView extends StatelessWidget {
           if (!isSmall) const Icon(Icons.chevron_right, color: Colors.black12),
         ],
       ),
+    );
+  }
+
+  Widget _buildAchievementsSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "Achievements",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            TextButton(
+              onPressed: () {},
+              child: Text(
+                "View All",
+                style: TextStyle(color: Color(0xFF42A5F5)),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
