@@ -17,6 +17,8 @@ class ProfileView extends StatelessWidget {
             _buildStatisticsSection(),
             SizedBox(height: 32),
             _buildAchievementsSection(),
+            SizedBox(height: 32),
+            _buildMenuSection(),
           ],
         ),
       ),
@@ -255,6 +257,49 @@ class ProfileView extends StatelessWidget {
           style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
         ),
       ],
+    );
+  }
+
+  Widget _buildMenuSection() {
+    return Column(
+      children: [
+        _buildMenuItem(Icons.settings_outlined, "Account Settings"),
+        SizedBox(height: 12),
+        _buildMenuItem(
+          Icons.person_add_alt_outlined,
+          "Friend Invitations",
+          badgeCount: 3,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildMenuItem(IconData icon, String title, {int badgeCount = 0}) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: Colors.black.withOpacity(0.05)),
+      ),
+      child: Row(
+        children: [
+          Container(
+            padding: EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Color(0xFFE3F2FD),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Icon(icon, color: Color(0xFF42A5F5), size: 20),
+          ),
+          SizedBox(width: 16),
+          Text(
+            title,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          Spacer(),
+        ],
+      ),
     );
   }
 }
