@@ -187,6 +187,73 @@ class ProfileView extends StatelessWidget {
             ),
           ],
         ),
+        SizedBox(height: 12),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _buildAchievementItem(
+              "Early Bird",
+              Icons.stars_rounded,
+              Colors.orange,
+              false,
+            ),
+            _buildAchievementItem(
+              "Fast Learner",
+              Icons.rocket_launch_rounded,
+              Colors.blue,
+              false,
+            ),
+            _buildAchievementItem(
+              "Grand Master",
+              Icons.emoji_events_rounded,
+              Colors.grey,
+              true,
+            ),
+            _buildAchievementItem(
+              "Socialite",
+              Icons.groups_rounded,
+              Colors.grey,
+              true,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildAchievementItem(
+    String title,
+    IconData icon,
+    Color color,
+    bool isLocked,
+  ) {
+    return Column(
+      children: [
+        Container(
+          width: 65,
+          height: 65,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: isLocked ? Colors.grey.shade50 : Colors.white,
+            border: Border.all(
+              color: isLocked ? Colors.black12 : color.withOpacity(0.5),
+              width: 2,
+            ),
+          ),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Icon(icon, color: isLocked ? Colors.black12 : color, size: 30),
+              if (isLocked)
+                const Icon(Icons.lock, size: 16, color: Colors.black26),
+            ],
+          ),
+        ),
+        SizedBox(height: 8),
+        Text(
+          title,
+          style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
+        ),
       ],
     );
   }
