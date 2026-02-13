@@ -82,7 +82,86 @@ class ProfileView extends StatelessWidget {
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         SizedBox(height: 16),
+        _buildStatCard(
+          icon: Icons.local_fire_department_rounded,
+          iconColor: Colors.orange,
+          label: "LONGEST STREAK",
+          value: "24 Days",
+        ),
+        SizedBox(height: 12),
+        Row(
+          children: [
+            Expanded(
+              child: _buildStatCard(
+                icon: Icons.sailing_rounded,
+                iconColor: Colors.amber,
+                label: "TOTAL XP",
+                value: "12,450",
+                isSmall: true,
+              ),
+            ),
+            SizedBox(width: 12),
+            Expanded(
+              child: _buildStatCard(
+                icon: Icons.menu_book_rounded,
+                iconColor: Colors.blue,
+                label: "LESSONS",
+                value: "142",
+                isSmall: true,
+              ),
+            ),
+          ],
+        ),
       ],
+    );
+  }
+
+  Widget _buildStatCard({
+    required IconData icon,
+    required Color iconColor,
+    required String label,
+    required String value,
+    bool isSmall = false,
+  }) {
+    return Container(
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: Colors.black.withOpacity(0.05)),
+      ),
+      child: Row(
+        children: [
+          Container(
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: iconColor.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(22),
+            ),
+            child: Icon(icon, color: iconColor),
+          ),
+          SizedBox(width: 16),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                label,
+                style: TextStyle(
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black26,
+                ),
+              ),
+              Text(
+                value,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          if (!isSmall) const Spacer(),
+          if (!isSmall) const Icon(Icons.chevron_right, color: Colors.black12),
+        ],
+      ),
     );
   }
 }
