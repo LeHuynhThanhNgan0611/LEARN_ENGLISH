@@ -19,6 +19,7 @@ class ProfileView extends StatelessWidget {
             _buildAchievementsSection(),
             SizedBox(height: 32),
             _buildMenuSection(),
+            SizedBox(height: 100),
           ],
         ),
       ),
@@ -298,6 +299,24 @@ class ProfileView extends StatelessWidget {
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           Spacer(),
+          if (badgeCount > 0)
+            Container(
+              padding: const EdgeInsets.all(6),
+              decoration: const BoxDecoration(
+                color: Color(0xFFFF8A65),
+                shape: BoxShape.circle,
+              ),
+              child: Text(
+                "$badgeCount",
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          SizedBox(width: 8),
+          Icon(Icons.chevron_right, color: Colors.black12),
         ],
       ),
     );
