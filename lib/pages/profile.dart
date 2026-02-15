@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/pages/all_achievements_view.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -16,7 +17,7 @@ class ProfileView extends StatelessWidget {
             SizedBox(height: 32),
             _buildStatisticsSection(),
             SizedBox(height: 32),
-            _buildAchievementsSection(),
+            _buildAchievementsSection(context),
             SizedBox(height: 32),
             _buildMenuSection(),
             SizedBox(height: 100),
@@ -170,7 +171,7 @@ class ProfileView extends StatelessWidget {
     );
   }
 
-  Widget _buildAchievementsSection() {
+  Widget _buildAchievementsSection(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -182,7 +183,14 @@ class ProfileView extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context!,
+                  MaterialPageRoute(
+                    builder: (context) => const AllAchievementsView(),
+                  ),
+                );
+              },
               child: Text(
                 "View All",
                 style: TextStyle(color: Color(0xFF42A5F5)),
