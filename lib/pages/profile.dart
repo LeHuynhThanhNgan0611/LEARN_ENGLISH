@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/pages/account_settings_view.dart';
 import 'package:weather_app/pages/all_achievements_view.dart';
 
 class ProfileView extends StatelessWidget {
@@ -19,7 +20,7 @@ class ProfileView extends StatelessWidget {
             SizedBox(height: 32),
             _buildAchievementsSection(context),
             SizedBox(height: 32),
-            _buildMenuSection(),
+            _buildMenuSection(context),
             SizedBox(height: 100),
           ],
         ),
@@ -269,10 +270,20 @@ class ProfileView extends StatelessWidget {
     );
   }
 
-  Widget _buildMenuSection() {
+  Widget _buildMenuSection(BuildContext context) {
     return Column(
       children: [
-        _buildMenuItem(Icons.settings_outlined, "Account Settings"),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const AccountSettingsView(),
+              ),
+            );
+          },
+          child: _buildMenuItem(Icons.settings_outlined, "Account Settings"),
+        ),
         SizedBox(height: 12),
         _buildMenuItem(
           Icons.person_add_alt_outlined,
